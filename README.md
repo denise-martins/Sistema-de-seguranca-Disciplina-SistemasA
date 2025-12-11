@@ -1,187 +1,328 @@
-Sistema de Segurança com Arduino (Senha, LEDs e Servo Motor)
+README.md – Sistema de Acesso com Arduino
+1. Visão Geral
 
-Este projeto implementa um sistema de segurança simples usando Arduino UNO, botões, LEDs e um servo motor.
-O usuário insere uma combinação de botões (senha). Se a senha estiver correta, um LED verde acende e o servo motor gira para liberar o acesso.
+Este projeto implementa um sistema de acesso eletrônico usando Arduino, botões, display LCD, LEDs, servo motor e buzzer.
+O usuário deve digitar uma senha de 4 dígitos para destravar a porta (servo).
+Também há avisos visuais e sonoros para senha correta e incorreta.
 
-📦 Instalação
-1. Baixar o código
+2. Funcionalidades
 
-Clone seu repositório:
+Entrada de senha por 4 botões físicos.
 
-git clone https://github.com/denise-martins/Sistema-de-seguranca-Disciplina-SistemasA.git
+Senha padrão configurada no código: 1 – 3 – 2 – 4.
 
+Display LCD 16x2 exibindo mensagens de status.
 
-Ou baixe o ZIP pelo botão Code → Download ZIP no GitHub.
+LED verde acende quando a senha está correta.
 
-2. Instalar Arduino IDE
+LED vermelho pisca quando a senha está incorreta.
 
-Baixe e instale a Arduino IDE:
+Buzzer emite alerta de erro.
 
-🔗 https://www.arduino.cc/en/software
+Servo motor abre ou fecha a porta simulada.
 
-3. Instalar a biblioteca Servo
+3. Acesso à Simulação
 
-Na Arduino IDE:
+Você pode testar o projeto online pelo Tinkercad:
 
-Vá em Ferramentas → Gerenciar Bibliotecas
+Simulação do Projeto:
+https://www.tinkercad.com/things/8fZGBMzJDqT-neat-jofo/editel
 
-Pesquise por Servo
+Para usar:
 
-Clique em Instalar
+Entrar no link.
 
-4. Conectar o Arduino
+Fazer login no Tinkercad.
 
-Conecte o Arduino UNO via cabo USB
+Clicar em “Iniciar Simulação”.
 
-Na Arduino IDE selecione:
+4. Requisitos
 
-Ferramentas → Placa → Arduino UNO
-Ferramentas → Porta → (selecione a porta COM disponível)
+Arduino Uno
 
-5. Enviar o código
+4 botões
 
-Abra o arquivo .ino e clique em Upload (seta para a direita).
+Display LCD 16x2 (modo 4 bits)
 
-Pronto! Seu sistema estará funcionando.
+Potenciômetro para contraste
 
-🧭 Como Usar o Sistema
+Servo motor
 
-Pressione os botões na sequência configurada como senha.
+LEDs (vermelho e verde)
 
-A cada botão pressionado:
+Buzzer
 
-O LED vermelho acende (indicando entrada sendo digitada).
+Jumpers e resistores
 
-Após pressionar 4 botões:
+Protoboard
 
-Se a sequência estiver correta:
+Se estiver usando apenas o Tinkercad, nada precisa ser instalado.
 
-O LED verde acende
+5. Instalação (caso use Arduino físico)
 
-O servo motor gira para 180° (liberando o acesso)
+Instalar a Arduino IDE no computador.
 
-Depois de 2 segundos, ele retorna para 0°
+Disponível em: https://www.arduino.cc/en/software
 
-Se estiver errada:
+Abrir o arquivo principal do projeto:
 
-Nada acontece, e o sistema reinicia a tentativa.
-
-O sistema aceita infinitas novas tentativas.
-
-🔐 Senha Configurada
-
-A senha default é:
-
-Botões nos pinos: 7 → 9 → 8 → 10
-
-Convertida para índices internos:
-
-{0, 2, 1, 3}
+projeto_sistema_acesso.ino
 
 
-Se quiser alterar, basta mudar estes valores no código.
+Conectar o Arduino via USB.
 
-🔌 Ligações do Circuito
-Botões
+Selecionar:
 
-Pino 7
+Placa: Arduino Uno
 
-Pino 8
+Porta: correspondente ao seu dispositivo
 
-Pino 9
+Carregar o código usando Upload.
 
-Pino 10
+6. Como Usar
 
-LEDs
+Ligue o sistema.
 
-LED vermelho → pino 11
+O display mostrará: "Digite a senha".
 
-LED verde → pino 12
+Pressione os botões na ordem da senha padrão:
 
-Servo (SG90)
+1 → 3 → 2 → 4
 
-Sinal (laranja) → pino 3
 
-VCC (vermelho) → 5V
+Se estiver correta:
 
-GND (marrom) → GND
+LED verde acende
 
-🧩 Código Completo
+Servo abre a porta
+
+Display mostra "Acesso liberado"
+
+Se estiver incorreta:
+
+LED vermelho pisca
+
+Buzzer toca
+
+Display mostra "Senha incorreta"
+
+Após alguns segundos, o sistema volta ao estado inicial.
+
+7. Estrutura do Código
+
+O código está dividido em:
+
+Configuração de pinos
+
+Leitura dos botões
+
+Comparação da senha
+
+Feedback visual e sonoro
+
+Abertura e fechamento do servo
+
+8. Repositório GitHub
+https://github.com/denise-martins/Sistema-de-seguranca-Disciplina-SistemasA
+
+9. Possíveis Expansões Futuras
+
+Cadastro de novas senhas.
+
+Modo administrador.
+
+Registro de tentativas.
+
+Comunicação Bluetooth ou Wi-Fi.
+
+Sensor de presença para ativação automática.
+
+Se quiser, posso gerar também LICENSE, código-fonte organizado, estrutura de pastas, ou transformar o README em um formato mais visual.
+
+Dito por si:
+
+código-fonte organizado
+
+sim
+Dito pelo ChatGPT:
+
+Perfeito. A seguir apresento uma estrutura completa de pastas + arquivos organizados + código-fonte principal limpo e bem comentado, pronta para colocar no GitHub.
+
+Caso queira, posso também gerar um zip, LICENSE, versão com comentários reduzidos, ou versão para Tinkercad apenas.
+
+Estrutura Recomendada do Projeto
+projeto-sistema-acesso/
+│
+├── README.md
+├── LICENSE                  (opcional)
+│
+├── /docs
+│   └── wiring_diagram.png   (diagrama de ligação, se quiser gerar depois)
+│
+├── /src
+│   └── sistema_acesso.ino   (código-fonte principal do Arduino)
+│
+├── /extras
+│   ├── melhorias_futuras.txt
+│   └── notas_do_projeto.md
+│
+└── /tinkercad
+    └── link_simulacao.txt
+
+Arquivo: link_simulacao.txt
+Simulação Tinkercad:
+https://www.tinkercad.com/things/8fZGBMzJDqT-neat-jofo/editel
+
+Arquivo: melhorias_futuras.txt (opcional)
+- Implementar troca de senha via botões
+- Adicionar sensor de presença (PIR)
+- Adicionar módulo Bluetooth ou Wi-Fi
+- Registrar tentativas em EEPROM
+- Criar modo administrador
+- Criar animações no LCD
+
+Arquivo: notas_do_projeto.md (opcional)
+Notas gerais coletadas durante o desenvolvimento:
+- O buzzer deve tocar apenas em tentativas incorretas.
+- Display lcd.print() tem limites de caracteres e quebra de linha manual.
+- Servo retornará ao ângulo inicial após timeout configurado.
+- LEDs estão conectados com resistores de 220 Ω.
+
+Código-Fonte organizado (sistema_acesso.ino)
+
+Código limpo, padronizado, comentado e pronto para upload à IDE Arduino.
+
 #include <Servo.h>
+#include <LiquidCrystal.h>
 
-const int botoes[4] = {7, 8, 9, 10};
-const int ledVermelho = 11;
-const int ledVerde = 12;
-const int servoPin = 3;
+// ------------------------------
+// Configurações de hardware
+// ------------------------------
 
-Servo meuServo;
+const int botoes[4] = {7, 8, 9, 10};   // Botões de entrada
+const int ledVerde = 11;              // LED para acesso liberado
+const int ledVermelho = 12;           // LED para senha incorreta
+const int buzzer = 6;                 // Buzzer de alerta
+const int servoPin = 3;               // Servo da porta
 
-// Defina a senha (sequência de botões)
-// Exemplo: 0-2-1-3 (botões 7, 9, 8, 10)
-const int senha[4] = {0, 2, 1, 3};
-int entrada[4];
-int indice = 0;
+Servo motorPorta;
+
+// LCD no modo de 4 bits (pinos RS, E, D4, D5, D6, D7)
+LiquidCrystal lcd(2, 4, 5, A0, A1, A2);
+
+// Senha padrão (1-3-2-4)
+int senhaCorreta[4] = {1, 3, 2, 4};
+int senhaDigitada[4];
+int posicao = 0;
+
+// ------------------------------
+// Configuração Inicial
+// ------------------------------
 
 void setup() {
+  // Botões como entrada
   for (int i = 0; i < 4; i++) {
-    pinMode(botoes[i], INPUT);
+    pinMode(botoes[i], INPUT_PULLUP);
   }
 
-  pinMode(ledVermelho, OUTPUT);
   pinMode(ledVerde, OUTPUT);
+  pinMode(ledVermelho, OUTPUT);
+  pinMode(buzzer, OUTPUT);
 
-  meuServo.attach(servoPin);
-  meuServo.write(0);  // posição inicial
+  motorPorta.attach(servoPin);
+  motorPorta.write(0);  // Porta fechada
+
+  lcd.begin(16, 2);
+  lcd.print("Digite a senha");
 }
 
-void loop() {
+// ------------------------------
+// Leitura dos botões
+// ------------------------------
 
-  // Verifica cada botão
+int lerBotaoPressionado() {
   for (int i = 0; i < 4; i++) {
-    if (digitalRead(botoes[i]) == HIGH) {
+    if (digitalRead(botoes[i]) == LOW) {
+      delay(250);  // Debounce simples
+      return i + 1; // Botões numerados de 1 a 4
+    }
+  }
+  return 0; // Nada pressionado
+}
 
-      digitalWrite(ledVerde, LOW); // verde apagado até confirmar
-      digitalWrite(ledVermelho, HIGH);   // LED vermelho acende
-      entrada[indice] = i;
-      indice++;
+// ------------------------------
+// Comparar senha
+// ------------------------------
 
-      delay(300); // evita múltiplas leituras do mesmo clique
+bool senhaCorretaDigitada() {
+  for (int i = 0; i < 4; i++) {
+    if (senhaDigitada[i] != senhaCorreta[i]) {
+      return false;
+    }
+  }
+  return true;
+}
 
-      // Se completou 4 digitações...
-      if (indice == 4) {
-        bool correta = true;
-        
-        for (int j = 0; j < 4; j++) {
-          if (entrada[j] != senha[j]) {
-            correta = false;
-            break;
-          }
-        }
+// ------------------------------
+// Feedback: senha correta
+// ------------------------------
 
-        if (correta) {
-          // ---- SENHA CORRETA ----
-          digitalWrite(ledVermelho, LOW);
-          digitalWrite(ledVerde, HIGH); 
+void acessoLiberado() {
+  lcd.clear();
+  lcd.print("Acesso liberado");
+  digitalWrite(ledVerde, HIGH);
 
-          meuServo.write(180);  
-          delay(2000);          
-          meuServo.write(0);    
-        }
+  motorPorta.write(90);   // Abre a porta
+  delay(3000);
 
-        // Reseta para nova entrada
-        indice = 0;
+  motorPorta.write(0);    // Fecha novamente
+  digitalWrite(ledVerde, LOW);
+
+  lcd.clear();
+  lcd.print("Digite a senha");
+}
+
+// ------------------------------
+// Feedback: senha incorreta
+// ------------------------------
+
+void acessoNegado() {
+  lcd.clear();
+  lcd.print("Senha incorreta");
+
+  // Pisca LED vermelho
+  for (int i = 0; i < 3; i++) {
+    digitalWrite(ledVermelho, HIGH);
+    tone(buzzer, 1000);
+    delay(200);
+
+    digitalWrite(ledVermelho, LOW);
+    noTone(buzzer);
+    delay(200);
+  }
+
+  lcd.clear();
+  lcd.print("Digite a senha");
+}
+
+// ------------------------------
+// Loop Principal
+// ------------------------------
+
+void loop() {
+  int botao = lerBotaoPressionado();
+  if (botao != 0) {
+    senhaDigitada[posicao] = botao;
+    posicao++;
+
+    if (posicao >= 4) {
+      posicao = 0;
+
+      if (senhaCorretaDigitada()) {
+        acessoLiberado();
+      } else {
+        acessoNegado();
       }
     }
-  }
-
-  // Se nenhum botão estiver sendo apertado, LED vermelho apaga
-  bool algumApertado = false;
-  for (int i = 0; i < 4; i++) {
-    if (digitalRead(botoes[i]) == HIGH) {
-      algumApertado = true;
-    }
-  }
-  if (!algumApertado) {
-    digitalWrite(ledVermelho, LOW);
   }
 }
